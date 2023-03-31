@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from './useForm'
+import {firestore} from '../firebase';
 
 const Form = () => {
     const name = useForm('');
@@ -7,23 +8,15 @@ const Form = () => {
     const message = useForm('');
     const postData = async (e)=>{
         e.preventDefault();
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                message
-            })
-        }
-        fetch("https://console.firebase.google.com/project/personal-blog-5fbac/database/personal-blog-5fbac-default-rtdb/data/~2F/contactform.json", requestOptions)
-        .then(response => {response.json(); console.log(response)})
-        .then(data => console.log(data));
         console.log('name:', name);
         console.log('email:', email);
         console.log('message:', message);
+        firestore.collection('contact').add({
+            name: name.value,
+            email: email.value,
+            message: message.value,
+            CreatedAt: new Date(),
+          })
     }
   return (
     <form className='form' method='POST'>
