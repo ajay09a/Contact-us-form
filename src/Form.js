@@ -1,32 +1,45 @@
-import React from 'react'
-import { useForm } from './useForm'
-import {firestore} from '../firebase';
+import React, {useState} from 'react'
+import {firestore} from './firebase';
 
 const Form = () => {
-    const name = useForm('');
-    const email = useForm('');
-    const message = useForm('');
+    const [user, setuser] = useState({
+        name: '',
+        email: '',
+        message: '',
+    });
+
+    function handleChange(e){
+        const value = e.target.value;
+        const name = e.target.name;
+        setuser({...user, [name]:value})
+    }
+
     const postData = async (e)=>{
         e.preventDefault();
-        console.log('name:', name);
-        console.log('email:', email);
-        console.log('message:', message);
+        console.log('name:', user.name);
+        console.log('email:', user.email);
+        console.log('message:', user.message);
         firestore.collection('contact').add({
-            name: name.value,
-            email: email.value,
-            message: message.value,
+            name: user.name,
+            email: user.email,
+            message: user.message,
             CreatedAt: new Date(),
           })
+          setuser({
+            name:'',
+            email: '',
+            message: ''
+          });
     }
   return (
-    <form className='form' method='POST'>
+    <form className='form' onSubmit={postData}>
         <label>Your Name:</label>
-        <input type='text' name="name" {...name} placeholder="Enter Your Name" autoComplete="off" required /><br />
+        <input type='text' name="name" value={user.name} onChange={handleChange} placeholder="Enter Your Name" autoComplete="off" required /><br />
         <label>Your Email:</label>
-        <input type='email' name="email" {...email} placeholder="Enter Your Email" autoComplete="off" required /><br />
+        <input type='email' name="email" value={user.email} onChange={handleChange} placeholder="Enter Your Email" autoComplete="off" required /><br />
         <label>Your Message:</label>
-        <input type='text' name="message" {...message} placeholder="Enter Your Message" autoComplete="off" required /><br />
-        <button onClick={postData}>Submit</button>
+        <input type='text' name="message" value={user.message} onChange={handleChange} placeholder="Enter Your Message" autoComplete="off" required /><br />
+        <button>Submit</button>
       </form>
   )
 }
