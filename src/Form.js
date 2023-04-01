@@ -33,12 +33,15 @@ const Form = () => {
     }
   return (
     <form className='form' onSubmit={postData}>
-        <label>Your Name:</label>
-        <input type='text' name="name" value={user.name} onChange={handleChange} placeholder="Enter Your Name" autoComplete="off" required /><br />
-        <label>Your Email:</label>
-        <input type='email' name="email" value={user.email} onChange={handleChange} placeholder="Enter Your Email" autoComplete="off" required /><br />
-        <label>Your Message:</label>
-        <input type='text' name="message" value={user.message} onChange={handleChange} placeholder="Enter Your Message" autoComplete="off" required /><br />
+        <div className='form-group'>
+          <input className='form-control' type='text' name="name" value={user.name} onChange={handleChange} placeholder="Name" autoComplete="off" required />
+        </div>
+        <div className='form-group'>
+          <input className='form-control' type='email' name="email" value={user.email} onChange={handleChange} placeholder="Email" autoComplete="off" required />
+        </div>
+        <div className='form-group'>
+          <textarea className='form-control' rows='5' name="message" value={user.message} onChange={handleChange} placeholder="Enter Your Message" autoComplete="off" required />
+        </div>
         <button>Submit</button>
       </form>
   )

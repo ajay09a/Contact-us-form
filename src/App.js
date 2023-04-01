@@ -3,8 +3,10 @@ import Form from './Form'
 function App() {
   return (
     <div className="App">
-      <header><center><h1>Contact Us</h1></center></header>
-      <Form />
+      <div className='container'>
+        <header><center><h2>Contact Us</h2></center></header>
+        <Form />
+      </div>
     </div>
   );
 }

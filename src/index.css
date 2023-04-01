@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #ff0060;
 }
 
 code {
@@ -14,4 +15,73 @@ code {
 
 .form{
   text-align: center;
+}
+
+
+#root{
+  display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+.App{
+  width: 60%;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.container{
+  padding: 4rem;
+}
+h2{
+  margin-top: 0;
+    margin-bottom: 40px;
+    font-family: Oswald,Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #000;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-control{
+  width: 100%;
+    height: 43px;
+    padding: 8px 16px;
+    background-color: #eee;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-family: Lato,Helvetica,Arial,sans-serif;
+}
+textarea.form-control {
+  height: auto;
+}
+button{
+  background-size: 200% auto;
+  color: #fff;
+  background-color: #ff0060;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+}
+@media only screen and (max-width: 880px) {
+  .App {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .App {
+    width: 90%;
+  }
+  .container{
+    padding: 3rem;
+    margin-left: -1rem;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .form-control {
+    height: 27px;
+  }
 }
